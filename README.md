@@ -2,7 +2,6 @@
 
 ## WIP Demo
 ```
-minikube start
 kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 kubectl wait --timeout=5m --for=condition=ready pods -l app.kubernetes.io/part-of=tekton-pipelines -n tekton-pipelines
 
@@ -25,7 +24,7 @@ tkn tr logs --last -f
 ```
 
 Check to see if it's signed. It appears this is only true after the signature and attestation have
-been successfully pushed to the registry, so may need to keep watching until one of the two following commands.
+been successfully pushed to the registry, so may need to keep watching one of the two following commands.
 ```
 tkn tr describe --last -o json | jq -r '.metadata.annotations["chains.tekton.dev/signed"]'
 ```
