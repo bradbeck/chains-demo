@@ -1,6 +1,9 @@
 # Tekton Chains Demo
+A simplified example of using [Tekton Chains](https://github.com/tektoncd/chains) and
+[Kaniko](https://github.com/GoogleContainerTools/kaniko) to push a signed artifact with an attestation
+to an [OCI](https://opencontainers.org) registry (e.g. [ttl.sh](https://ttl.sh)).
 
-## WIP Demo
+## Demo
 ```
 kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
 kubectl wait --timeout=5m --for=condition=ready pods -l app.kubernetes.io/part-of=tekton-pipelines -n tekton-pipelines
@@ -40,3 +43,7 @@ Verify the signature and the attestation.
 cosign verify --key cosign.pub ${IMAGE}
 cosign verify-attestation --key cosign.pub ${IMAGE}
 ```
+
+## References
+* https://github.com/priyawadhwa/demos/blob/main/distroless-demo/chains
+* https://github.com/yfolias/tekton-chains-poc
