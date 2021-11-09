@@ -21,7 +21,7 @@ kubectl apply -f https://raw.githubusercontent.com/tektoncd/chains/main/examples
 export NS=$(xxd -l 16 -c 16 -p < /dev/random)
 export IMAGE=ttl.sh/${NS}/kaniko-chains
 
-tkn task start --param IMAGE=$IMAGE --use-param-defaults --workspace name=source,emptyDir="" kaniko-chains
+cue export -t image=${IMAGE} kaniko-task-run.cue --out yaml | k create -f -
 
 tkn tr logs --last -f
 ```
